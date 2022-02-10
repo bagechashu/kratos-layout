@@ -1,4 +1,4 @@
-module github.com/go-kratos/kratos-layout
+module github.com/bagechashu/kratos-layout
 
 go 1.16
 
