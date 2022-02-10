@@ -14,6 +14,7 @@ init:
 	go install github.com/google/gnostic/cmd/protoc-gen-openapi@v0.6.1
 	go install github.com/google/wire/cmd/wire@latest
 	go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+	go install github.com/go-swagger/go-swagger/cmd/swagger@latest
 
 .PHONY: errors
 # generate errors code
