@@ -13,6 +13,7 @@ init:
 	go install github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2@latest
 	go install github.com/google/gnostic/cmd/protoc-gen-openapi@v0.6.1
 	go install github.com/google/wire/cmd/wire@latest
+	go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
 
 .PHONY: errors
 # generate errors code
@@ -40,6 +41,7 @@ api:
 	       --go-http_out=:. \
 	       --go-grpc_out=:. \
 	       --openapi_out=:. \
+	       --openapiv2_out ./swagger \
 	       $(API_PROTO_FILES)
 
 .PHONY: build
