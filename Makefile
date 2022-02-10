@@ -1,6 +1,6 @@
 GOPATH:=$(shell go env GOPATH)
 VERSION=$(shell git describe --tags --always)
-INTERNAL_PROTO_FILES=$(shell find internal -name *.proto)
+CONFIG_PROTO_FILES=$(shell find conf -name *.proto)
 API_PROTO_FILES=$(shell find api -name *.proto)
 
 .PHONY: init
@@ -19,8 +19,8 @@ init:
 errors:
 	protoc --proto_path=. \
                --proto_path=./third_party \
-               --go_out=paths=source_relative:.. \
-               --go-errors_out=paths=source_relative:.. \
+               --go_out=:. \
+               --go-errors_out=:. \
                $(API_PROTO_FILES)
 
 .PHONY: config
@@ -28,18 +28,18 @@ errors:
 config:
 	protoc --proto_path=. \
 	       --proto_path=./third_party \
-	       --go_out=paths=source_relative:.. \
-	       $(INTERNAL_PROTO_FILES)
+	       --go_out=:. \
+	       $(CONFIG_PROTO_FILES)
 
 .PHONY: api
 # generate api proto
 api:
 	protoc --proto_path=. \
 	       --proto_path=./third_party \
-	       --go_out=paths=source_relative:.. \
-	       --go-http_out=paths=source_relative:.. \
-	       --go-grpc_out=paths=source_relative:.. \
-	       --openapi_out==paths=source_relative:.. \
+	       --go_out=:. \
+	       --go-http_out=:. \
+	       --go-grpc_out=:. \
+	       --openapi_out=:. \
 	       $(API_PROTO_FILES)
 
 .PHONY: build
@@ -63,7 +63,6 @@ all:
 	make api;
 	make errors;
 	make config;
-	make generate;
 	make wire;
 
 # show help
