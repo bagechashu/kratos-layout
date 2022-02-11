@@ -42,7 +42,7 @@ api:
 	       --go-http_out=:. \
 	       --go-grpc_out=:. \
 	       --openapi_out=:. \
-	       --openapiv2_out ./swagger \
+	       --openapiv2_out ./swagger/ui/ \
 	       $(API_PROTO_FILES)
 
 .PHONY: build

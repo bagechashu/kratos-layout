@@ -4,6 +4,7 @@ import (
 	v1 "github.com/bagechashu/kratos-layout/api/helloworld/v1"
 	"github.com/bagechashu/kratos-layout/app/greeter/service"
 	"github.com/bagechashu/kratos-layout/conf"
+	"github.com/bagechashu/kratos-layout/swagger"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
@@ -27,6 +28,10 @@ func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, logger log.L
 		opts = append(opts, http.Timeout(c.Http.Timeout.AsDuration()))
 	}
 	srv := http.NewServer(opts...)
+
+	// set handler for swagger
+	srv.HandlePrefix("/swagger", swagger.NewSwaggerUIRouter())
+
 	v1.RegisterGreeterHTTPServer(srv, greeter)
 	return srv
 }
