@@ -2,7 +2,7 @@ package server
 
 import (
 	v1 "github.com/bagechashu/kratos-layout/api/helloworld/v1"
-	"github.com/bagechashu/kratos-layout/app/greeter/service"
+	"github.com/bagechashu/kratos-layout/app/greeter"
 	"github.com/bagechashu/kratos-layout/conf"
 	"github.com/bagechashu/kratos-layout/swagger"
 
@@ -12,7 +12,7 @@ import (
 )
 
 // NewHTTPServer new a HTTP server.
-func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, logger log.Logger) *http.Server {
+func NewHTTPServer(c *conf.Server, greeter *greeter.GreeterService, logger log.Logger) *http.Server {
 	var opts = []http.ServerOption{
 		http.Middleware(
 			recovery.Recovery(),

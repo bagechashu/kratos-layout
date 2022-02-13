@@ -1,7 +1,8 @@
-package biz
+package greeter
 
 import (
 	"context"
+
 	"github.com/go-kratos/kratos/v2/log"
 )
 
